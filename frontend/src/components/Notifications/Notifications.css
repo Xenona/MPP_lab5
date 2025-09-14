@@ -1,0 +1,108 @@
+.notifications-wrapper {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 1200;
+    pointer-events: none; 
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 320px;
+    max-width: 420px;
+}
+
+.toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(15,23,42,0.06);
+    box-shadow: 0 12px 30px rgba(2,6,23,0.12);
+    border-radius: 12px;
+    padding: 12px 12px;
+    overflow: hidden;
+    position: relative;
+    transform-origin: right top;
+}
+
+.toast-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 auto;
+}
+.toast-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #0f172a;
+}
+.toast-text {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.25;
+    word-break: break-word;
+}
+
+.toast-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+.toast-time {
+    font-size: 12px;
+    color: #6b7280;
+}
+.toast-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: #6b7280;
+    padding: 4px;
+    border-radius: 6px;
+}
+.toast-close:hover { background: rgba(0,0,0,0.04); color: #111827; }
+
+.toast-timer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(37,99,235,0.95), rgba(99,102,241,0.95));
+    width: 100%;
+    transform-origin: left;
+    animation: toast-timer linear forwards;
+    animation-duration: 3s;
+}
+
+.toast.info { border-left: 4px solid #2563eb; }
+.toast.success { border-left: 4px solid #10b981; }
+.toast.warn { border-left: 4px solid #f59e0b; }
+
+@keyframes toast-slide-in {
+    from { transform: translateX(20px) scale(.98); opacity: 0; }
+    to   { transform: translateX(0) scale(1); opacity: 1; }
+}
+@keyframes toast-slide-out {
+    from { transform: translateX(0) scale(1); opacity: 1; }
+    to   { transform: translateX(16px) scale(.98); opacity: 0; }
+}
+@keyframes toast-timer {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+}
+
+.toast-enter {
+    animation: toast-slide-in 260ms cubic-bezier(.2,.9,.3,1);
+}
+.toast-exit {
+    animation: toast-slide-out 300ms cubic-bezier(.2,.9,.3,1) forwards;
+    opacity: 0;
+    transform: translateX(14px) scale(.98);
+}
